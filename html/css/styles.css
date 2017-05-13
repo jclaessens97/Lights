@@ -1,0 +1,120 @@
+body {
+    background-color: #2244AA;
+    color: #fff;
+}
+
+.container {
+    width: 250px;
+}
+
+.container .Default {
+    padding: 4px;
+    font-size: 14pt;
+    font-weight: bold;
+    background-color: #FFA500;
+    width: 100%;
+}
+
+.container button {
+    cursor: pointer;
+    -webkit-transition: background-color .3s;
+    transition: background-color .3s;
+}
+
+#status {
+    margin-top: 15px;
+    margin-left: 5px;
+    color: #00cc00;
+}
+
+#stopStartButton {
+    margin-top: 10px
+}
+
+#error {
+    display: block;
+    color: #f00;
+    width: 120%;
+    margin-bottom: 10px;
+}
+
+#update-controls {
+    width: 100%;
+    margin-top: 15px;
+}
+
+#update-controls #inputOn,
+#update-controls #inputOff {
+    width: 100px;
+    float: right;
+    margin-top: -5px;
+}
+
+#toggleAll {
+    width: 80%;
+    margin-left: 25px;
+    margin-top: 7px;
+}
+
+#manageSequences {
+    margin-top: 7px;
+    width: 80%;
+    margin-left: 25px;
+}
+
+#stopStartButton:hover,
+#update-controls button:hover,
+#toggleAll:hover {
+    background-color: #e59400;
+}
+
+.gpio-controls {
+    margin-left: 0px;
+}
+
+.gpio-controls button {
+    width: 100px;
+    height: 50px;
+    color: #f00;
+    margin: 5px;
+    border-radius: 7px;
+    border: 0px;
+}
+
+.gpio-controls button span {
+    font-size: 10pt;
+}
+
+.HIGH {
+    background-color: #ff0 !important;
+}
+
+button:disabled,
+button[disabled] {
+    background-color: #858785 !important;
+    cursor: default;
+}
+
+/*SEQUENCES*/
+.sequence-container {
+    width: 300px;
+    margin-top: 15px;
+}
+
+.panel {
+    background-color: #112255;
+    border-radius: 7px;
+    padding: 25px 25px 0px 10px
+}
+
+#uploadButton {
+    margin-top: 7px;
+    color: #fff;
+    width: 250px;
+}
+
+#row2 {
+    position: absolute;
+    margin-top: 130px;
+    margin-left: -10px;
+}

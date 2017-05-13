@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <link rel="shortcut icon" href="/favicon.ico" />
+        <title>Verlichting</title>
+        <!--Stylesheets-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <link rel="stylesheet" href="css/styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <span id="status">Running...</span>
+                <button type="button" class="Default btn" id="stopStartButton">Stop</button>
+            </div>
+
+            <form id="update-controls">
+                <span id="error"></span>
+                <div class="form-group">
+                    <label for="inputOn">Aanzetten om:</label>
+                    <input id="inputOn" type="text" placeholder="hh:mm" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="inputOff">Uitzetten om:</label>
+                    <input id="inputOff" type="text" placeholder="hh:mm" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="inputSequence">Sequentie:</label>
+                    <select id="inputSequence" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <button type="button" class="Default btn" id="updateButton">Wijzig</button>
+                </div>                
+            </form>
+
+            <div class="row gpio-controls">
+                <div id="left-controls" class="controls btn-group-vertical"></div>
+                <div id="right-controls" class="controls btn-group-vertical"></div>
+            </div>
+
+            <div class="row">
+                <button id="toggleAll" class="Default btn">Alle lichten</button>
+            </div>
+        </div>
+
+        <!--Scripts-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+                integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+                crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" 
+                integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" 
+                crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" 
+                integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" 
+                crossorigin="anonymous"></script>
+        <script type="text/javascript" src="/webiopi.js"></script>
+        <script type="text/javascript" src="js/lights.js"></script>
+    </body>
+</html>
