@@ -1,0 +1,6 @@
+#HOUR ON (hh:mm:ss):
+08:00:00
+#HOUR OFF (hh:mm:ss):
+23:00:00
+#DEFAULT SEQUENCEFILE
+sequentie_dubbel.txt
