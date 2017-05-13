@@ -1,6 +1,6 @@
 # Lights
 
-Personal project to control 16 lights via 'sequence files'
+Personal project to control 16 lights using a web interface and sequence (text) files
 Needs to be installed with specific environment settings.
 
 Used this repository as back-up.
