@@ -71,10 +71,13 @@ def parseSequence():
 
             commands[i][0] = int(commands[i][0])
 
-            if (commands[i][1].strip() == "False"):
-                commands[i][1] = False
+            if (checkIfInt(commands[i][1])):
+                commands[i][1] = int(commands[i][1])
             else:
-                commands[i][1] = True
+                if (commands[i][1].strip() == "False"):
+                    commands[i][1] = False
+                else:
+                    commands[i][1] = True
 
             commands[i][2] = int(commands[i][2]) / 1000
 
@@ -100,7 +103,6 @@ def infiniteTimeCheck():
         else:
             return False
     else:
-
         return False  
 
 def setup():
@@ -140,30 +142,49 @@ def loop():
             index = 0
     
         lightIndex = commands[index][0]
-        lightVal = commands[index][1]
+        lightVal = None
+        repeat = 0
+
+        if (isinstance(commands[index][1], bool)):
+            lightVal = commands[index][1]
+        else:
+            repeat = commands[index][1]
+            
         delay = commands[index][2]
+        flashing = False
 
         if (lightIndex > 10):
-            lightNr = LIGHTS[lightIndex - 3]
-        else:
-            lightNr = LIGHTS[lightIndex - 1]
 
-        if (lightVal == True):
+            lightNr = LIGHTS[lightIndex - 3]
+        elif (lightIndex >= 1):
+
+            lightNr = LIGHTS[lightIndex - 1]
+        elif (lightIndex == 0):
+            flashing = True           
+
+        if (lightVal == True and not flashing):
             GPIO.digitalWrite(lightNr, GPIO.HIGH)
-        else:
+        elif (lightVal == False and not flashing):
             GPIO.digitalWrite(lightNr, GPIO.LOW)
+        else:
+            flashAllLights(repeat, delay)
       
         index += 1
-        webiopi.sleep(delay)
+
+        if (flashing):
+            continue
+        else:
+            webiopi.sleep(delay)
 
         if (not infiniteTimeCheck()):
             if (timeCheck() == False):
                 destroy()
         
         if (ACTIVE == False):
-            destroy()
+            destroy()        
     
     webiopi.sleep(1)
+
 
 def destroy():
     global ACTIVE
@@ -176,7 +197,26 @@ def destroy():
     for light in LIGHTS:
         if (GPIO.digitalRead(light) == GPIO.HIGH):
             GPIO.digitalWrite(light, GPIO.LOW)
-            
+
+def flashAllLights(repeat, delay):
+    for i in range(0, repeat):
+        for light in LIGHTS:
+                GPIO.digitalWrite(light, GPIO.HIGH)
+
+        webiopi.sleep(delay)
+
+        for light in LIGHTS:
+            GPIO.digitalWrite(light, GPIO.LOW)
+
+        webiopi.sleep(1)
+
+def checkIfInt(s):
+    try:
+        int(s)
+        return True
+    except ValueError:
+        return False
+
 @webiopi.macro
 def getTime():
     return "%s;%s" % (HOUR_ON.strftime("%H:%M"), HOUR_OFF.strftime("%H:%M"))
@@ -241,7 +281,6 @@ def writeToConfig():
         conf.close()
     except IOError:
         print("ERROR: kon niet naar configfile wegschrijven!")
-        exit(-1)
 
 @webiopi.macro
 def toggleAllLights():
