@@ -230,8 +230,17 @@ def setTime(on, off):
 
     now = datetime.datetime.now()
 
-    HOUR_ON = datetime.datetime(now.year, now.month, now.day, int(time_on[0]), int(time_on[1]), 0)
-    HOUR_OFF = datetime.datetime(now.year, now.month, now.day, int(time_off[0]), int(time_off[1]), 0)
+    hourOn = int(time_on[0])
+    minuteOn = int(time_on[1])
+    hourOff = int(time_off[0])
+    minuteOff = int(time_off[1])
+
+    if ((hourOn == 0 and minuteOn == 0) and (hourOff == 0 and minuteOff == 0)):
+        HOUR_ON = datetime.datetime(2000, now.month, now.day, hourOn, minuteOn, 0)
+        HOUR_OFF = datetime.datetime(2100, now.month, now.day, hourOff, minuteOff, 0) 
+    else:
+        HOUR_ON = datetime.datetime(now.year, now.month, now.day, hourOn, minuteOn, 0)
+        HOUR_OFF = datetime.datetime(now.year, now.month, now.day, hourOff, minuteOff, 0)
 
     return getTime()
 
